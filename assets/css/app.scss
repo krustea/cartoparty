@@ -96,7 +96,16 @@ body {
 }
 
 // page accueil
-.header-homepage{
-    width: 100vh;
+.img-header-homepage{
+    width: 100%;
     height: auto;
+}
+
+.main-homepage{
+    height: 100vh;
+}
+
+.img-main-homepage{
+    height: 400px;
+    width: auto;
 }
