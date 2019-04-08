@@ -13,6 +13,8 @@
                 {% if app.user %}
                     <a class="p-2 text-dark" href="{{ path('user_show', {'id': app.user.id}) }}">profil</a>
                     <span class="btn btn-outline-primary">{{ app.user.firstname }}</span>
+                    <img src="{{ asset('images/uploads/' ~ app.user.picture) }}" alt="">
+                    <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">Se deconnecter</a>
                 {% else %}
                     <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>
                     <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
@@ -20,10 +22,10 @@
                         Créer un compte
                     </a>
                 {% endif %}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('admin') }}" class="btn btn-light">Administration</a>
+                {#{% if is_granted('ROLE_ADMIN') %}#}
+                    {#<a href="{{ path('admin') }}" class="btn btn-light">Administration</a>#}
 
-                {% endif %}
+                {#{% endif %}#}
 
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

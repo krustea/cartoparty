@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserType extends AbstractType
 {
@@ -26,7 +27,7 @@ class UserType extends AbstractType
             ->add('zipcode')
             ->add('city')
             ->add('phone')
-            ->add('picture')
+            ->add('pictureFile', VichImageType::class, array('label'=>'Image', 'required'=> false))
         ;
     }
 

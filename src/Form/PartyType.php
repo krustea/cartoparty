@@ -6,6 +6,7 @@ use App\Entity\Party;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PartyType extends AbstractType
 {
@@ -13,7 +14,7 @@ class PartyType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('picture')
+            ->add('pictureFile', VichImageType::class, array('label'=>'Image', 'required'=> true))
             ->add('city')
             ->add('started_at')
             ->add('ended_at')
