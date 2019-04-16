@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Travel;
-use App\Form\TravelType;
+use App\Form\Travel1Type;
 use App\Repository\TravelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class TravelController extends AbstractController
     public function new(Request $request): Response
     {
         $travel = new Travel();
-        $form = $this->createForm(TravelType::class, $travel);
+        $form = $this->createForm(Travel1Type::class, $travel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class TravelController extends AbstractController
      */
     public function edit(Request $request, Travel $travel): Response
     {
-        $form = $this->createForm(TravelType::class, $travel);
+        $form = $this->createForm(Travel1Type::class, $travel);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

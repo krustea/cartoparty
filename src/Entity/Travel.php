@@ -18,10 +18,6 @@ class Travel
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -64,6 +60,12 @@ class Travel
      */
     private $bookings;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="travels")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -75,17 +77,6 @@ class Travel
         return $this->id;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getCity(): ?string
     {
@@ -217,6 +208,22 @@ class Travel
                 $booking->setTravel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->getCity();
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

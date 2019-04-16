@@ -11,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PartyRepository")
+ *  * @Vich\Uploadable
  */
 class Party
 {
@@ -120,7 +121,7 @@ class Party
         return $this->picture;
     }
 
-    public function setPicture(string $picture): self
+    public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
 
@@ -190,7 +191,7 @@ class Party
     /**
      * @return File
      */
-    public function getPictureFile(): File
+    public function getPictureFile(): ?File
     {
         return $this->pictureFile;
     }
@@ -240,5 +241,9 @@ class Party
         }
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->name;
     }
 }

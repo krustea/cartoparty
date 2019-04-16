@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Type</th>
                 <th>City</th>
                 <th>Started_at</th>
                 <th>Nb_user</th>
@@ -21,7 +20,6 @@
         {% for travel in travels %}
             <tr>
                 <td>{{ travel.id }}</td>
-                <td>{{ travel.type }}</td>
                 <td>{{ travel.city }}</td>
                 <td>{{ travel.startedAt ? travel.startedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ travel.nbUser }}</td>
@@ -33,7 +31,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -13,7 +13,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @Vich\Uploadable
+
+ *
  */
 
 class User implements UserInterface
@@ -509,4 +510,9 @@ class User implements UserInterface
 
             ) = unserialize($serialized);
     }
+
+    public function __toString() {
+        return $this->getLastname();
+    }
+
 }

@@ -20,7 +20,7 @@ security:
             form_login:
                 # ...
                 default_target_path: /homepage
-            anonymous: true
+            anonymous: ~
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
