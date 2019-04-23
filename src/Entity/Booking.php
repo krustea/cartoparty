@@ -27,11 +27,18 @@ class Booking
      */
     private $user;
 
+
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Travel", inversedBy="bookings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $travel;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbTravelers;
 
     public function getId(): ?int
     {
@@ -76,5 +83,17 @@ class Booking
 
     public function __toString() {
         return $this->getUser();
+    }
+
+    public function getNbTravelers(): ?int
+    {
+        return $this->nbTravelers;
+    }
+
+    public function setNbTravelers(int $nbTravelers): self
+    {
+        $this->nbTravelers = $nbTravelers;
+
+        return $this;
     }
 }

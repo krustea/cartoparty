@@ -66,10 +66,16 @@ class Travel
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreatedAt;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
         $this->bookings = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime());
     }
 
     public function getId(): ?int
@@ -227,4 +233,25 @@ class Travel
 
         return $this;
     }
+// controller pour calculer le nb place restante sur covoit
+    public function getNbUsersLeft() {
+        $nbLeft = $this->getNbUser();
+        foreach ($this->getBookings() as $booking) {
+            $nbLeft = $nbLeft - $booking->getNbTravelers();
+        }
+        return $nbLeft;
+    }
+
+public function getCreatedAt(): ?\DateTimeInterface
+{
+    return $this->CreatedAt;
+}
+
+public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+{
+    $this->CreatedAt = $CreatedAt;
+
+    return $this;
+}
+
 }

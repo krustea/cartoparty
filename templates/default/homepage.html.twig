@@ -6,10 +6,21 @@
     <div class="container main-homepage">
         <div>
             <img class="img-main-homepage" src="images/balloons-1331564_1920.jpg" alt="balloon">
-            <button type="button" class="btn btn-primary">Proposer un trajet</button>
-            <button type="button" class="btn btn-success">Proposer un événement</button>
-
+            <a class="btn btn-primary" role="button" href="{{ path('travel_new') }}">Proposer un trajet</a>
+            <a class="btn btn-success" role="button" href="{{ path('party_new') }}">Proposer un événement</a>
         </div>
+
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>
+
     </div>
 
 

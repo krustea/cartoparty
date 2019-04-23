@@ -8,7 +8,7 @@
     <body>
         {% block header %}
             <nav class="navbar navbar-light bg-light justify-content-between">
-                <a class="navbar-brand">Car To Party!</a>
+                <a class="navbar-brand" href="{{ path('homepage') }}">Car To Party!</a>
 
                 {% if app.user %}
                     <a class="p-2 text-dark" href="{{ path('user_show', {'id': app.user.id}) }}">profil</a>
