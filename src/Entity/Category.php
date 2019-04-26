@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    const ALLER = 'Aller';
+    const RETOUR= 'Retour';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

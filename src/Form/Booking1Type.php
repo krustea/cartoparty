@@ -7,12 +7,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BookingType extends AbstractType
+class Booking1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('valid')
+            ->add('nbTravelers')
             ->add('user')
             ->add('travel')
         ;

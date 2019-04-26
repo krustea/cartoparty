@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Valid</th>
+                <th>NbTravelers</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ booking.id }}</td>
                 <td>{{ booking.valid ? 'Yes' : 'No' }}</td>
+                <td>{{ booking.nbTravelers }}</td>
                 <td>
                     <a href="{{ path('booking_show', {'id': booking.id}) }}">show</a>
                     <a href="{{ path('booking_edit', {'id': booking.id}) }}">edit</a>
@@ -25,7 +27,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

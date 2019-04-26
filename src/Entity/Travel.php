@@ -69,7 +69,7 @@ class Travel
     /**
      * @ORM\Column(type="datetime")
      */
-    private $CreatedAt;
+    private $createdAt;
 
     public function __construct()
     {
@@ -244,12 +244,12 @@ class Travel
 
 public function getCreatedAt(): ?\DateTimeInterface
 {
-    return $this->CreatedAt;
+    return $this->createdAt;
 }
 
 public function setCreatedAt(\DateTimeInterface $CreatedAt): self
 {
-    $this->CreatedAt = $CreatedAt;
+    $this->createdAt = $CreatedAt;
 
     return $this;
 }

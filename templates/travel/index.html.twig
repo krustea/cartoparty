@@ -12,6 +12,7 @@
                 <th>City</th>
                 <th>Started_at</th>
                 <th>Nb_user</th>
+                <th>Nb_place encore dispo</th>
                 <th>Price</th>
                 <th>actions</th>
             </tr>
@@ -23,6 +24,7 @@
                 <td>{{ travel.city }}</td>
                 <td>{{ travel.startedAt ? travel.startedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ travel.nbUser }}</td>
+                <td>{{ travel.nbUsersLeft }}</td>
                 <td>{{ travel.price }}</td>
                 <td>
                     <a href="{{ path('travel_show', {'id': travel.id}) }}">show</a>

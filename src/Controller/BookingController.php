@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
-use App\Form\BookingType;
+use App\Form\Booking1Type;
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class BookingController extends AbstractController
     public function new(Request $request): Response
     {
         $booking = new Booking();
-        $form = $this->createForm(BookingType::class, $booking);
+        $form = $this->createForm(Booking1Type::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class BookingController extends AbstractController
      */
     public function edit(Request $request, Booking $booking): Response
     {
-        $form = $this->createForm(BookingType::class, $booking);
+        $form = $this->createForm(Booking1Type::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

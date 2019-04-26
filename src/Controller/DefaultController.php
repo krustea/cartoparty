@@ -2,6 +2,7 @@
 
 
 namespace App\Controller;
+use App\Entity\Category;
 use App\Entity\Travel;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,8 +14,18 @@ class DefaultController extends BaseController
       */
     public function homepage()
     {
-//        $travel->getDoctrine()->getRepository(Travel::class)->findOneBy()
 
-        return $this->render('default/homepage.html.twig');
+       $aller= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::ALLER]);
+       $retour= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::RETOUR]);
+       $allertravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($aller,6);
+       $retourtravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($retour,6);
+
+        dump($retourtravels);
+
+
+        return $this->render('default/homepage.html.twig',[
+            "allers"=>$allertravels,
+            "retours"=>$retourtravels,
+        ]);
     }
 }
