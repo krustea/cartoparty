@@ -31,6 +31,7 @@ class PartyController extends AbstractController
     public function new(Request $request): Response
     {
         $party = new Party();
+        $party->setUser($this->getUser());
         $form = $this->createForm(PartyType::class, $party);
         $form->handleRequest($request);
 

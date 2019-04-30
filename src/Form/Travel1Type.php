@@ -17,7 +17,7 @@ class Travel1Type extends AbstractType
             ->add('nb_user')
             ->add('price')
             ->add('party')
-            ->add('user')
+//            ->add('user')
             ->add('category')
         ;
     }

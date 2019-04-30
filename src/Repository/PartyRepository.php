@@ -19,6 +19,11 @@ class PartyRepository extends ServiceEntityRepository
         parent::__construct($registry, Party::class);
     }
 
+
+
+
+
+
     // /**
     //  * @return Party[] Returns an array of Party objects
     //  */

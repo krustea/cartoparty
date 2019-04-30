@@ -19,7 +19,7 @@ class PartyType extends AbstractType
             ->add('started_at')
             ->add('ended_at')
             ->add('description')
-            ->add('user')
+//            ->add('user')
         ;
     }
 

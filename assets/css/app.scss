@@ -102,10 +102,34 @@ body {
 }
 
 .main-homepage{
-    height: 100vh;
+    //height: 100vh;
 }
 
 .img-main-homepage{
     height: 400px;
     width: auto;
+}
+
+.aller{
+    display: flex;
+}
+
+.cardaller{
+    margin: 20px;
+}
+
+.retour{
+    display: flex;
+}
+
+.cardretour{
+    margin: 20px;
+}
+
+.party{
+    display: flex;
+}
+
+.cardparty {
+    margin: 20px;
 }

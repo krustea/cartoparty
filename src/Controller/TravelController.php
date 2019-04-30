@@ -31,6 +31,7 @@ class TravelController extends AbstractController
     public function new(Request $request): Response
     {
         $travel = new Travel();
+        $travel->setUser($this->getUser());
         $form = $this->createForm(Travel1Type::class, $travel);
         $form->handleRequest($request);
 

@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% block body %}
 
-<img class="img-header-homepage" src="images/concert-2527495_1280.jpg" alt="concert">
+    <img class="img-header-homepage" src="images/concert-2527495_1280.jpg" alt="concert">
 
     <div class="container main-homepage">
         <div>
@@ -9,23 +9,31 @@
             <a class="btn btn-primary" role="button" href="{{ path('travel_new') }}">Proposer un trajet</a>
             <a class="btn btn-success" role="button" href="{{ path('party_new') }}">Proposer un événement</a>
         </div>
+        <h4>Trajet aller</h4>
+        <div class="aller ">
+            {% for aller in allers %}
+                <article class="col-md-3 cardaller">
+                    {% include 'travel/cardaller.html.twig' with {'travel' : aller} only %}
+                </article>
+            {% endfor %}
+        </div>
+        <h4>Trajet retour</h4>
+        <div class="retour ">
+            {% for retour in retours %}
+                <article class="col-md-3 cardretour">
+                    {% include 'travel/cardretour.html.twig'with {'travel' : retour} only %}
+                </article>
+            {% endfor %}
+        </div>
+<h4>Derniers événements créés</h4>
+        <div class="party">
+            {% for party in parties %}
+                <article class="col-md-3 cardparty">
+                    {% include'party/card.html.twig' %}
+                </article>
+            {% endfor %}
 
-<div class="container">
-    {% for aller in allers %}
-        <article class="col-md-3">
-            {% include 'travel/cardaller.html.twig' with {'travel' : aller} only %}
-        </article>
-    {% endfor %}
-</div>
-
-
-<div class="caontainer">
-    {% for retour in retours %}
-        <article class="col-md-3">
-            {% include 'travel/cardretour.html.twig'with {'travel' : retour} only  %}
-        </article>
-    {% endfor %}
-</div>
+        </div>
 
 
     </div>
