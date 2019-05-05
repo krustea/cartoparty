@@ -76,6 +76,7 @@ class Travel
         $this->messages = new ArrayCollection();
         $this->bookings = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
+        $this->setStartedAt(new \DateTime());
     }
 
     public function getId(): ?int

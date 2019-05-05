@@ -5,9 +5,49 @@
 {% block body %}
     <h1>Party</h1>
 
-    {#<img src="{{ asset('uploads/' ~party.image) }}" alt="{{ party.name }}">#}
 
 
+<div class="container">
+
+    <h1>{{ party.name }}</h1>
+    du : {{ party.startedAt|date('d-m ') }} au {{ party.endedAt|date('d-m-Y ') }}
+
+    <img src="{{ asset('uploads/' ~ party.picture) }}" alt="{{ party.name }}">
+    <p>{{ party.description }}</p>
+
+</div>
+
+{#
+    <h4>Trajet aller</h4>
+    <div class="aller ">
+        {% for aller in allers %}
+            <a href="{{ path('travel_show', {'id':aller.id}) }}">
+                <article class="col-md-3 cardaller" >
+                    {% include 'travel/cardaller.html.twig' with {'travel' : aller} only %}
+                </article>
+            </a>
+        {% endfor %}
+    </div>
+    <h4>Trajet retour</h4>
+    <div class="retour ">
+        {% for retour in retours %}
+            <a href="{{ path('travel_show', {'id':retour.id}) }}">
+
+                <article class="col-md-3 cardretour">
+                    {% include 'travel/cardretour.html.twig'with {'travel' : retour} only %}
+                </article>
+            </a>
+        {% endfor %}
+#}
+{#{% for travel in travels %}#}
+    {#<div>#}
+        {#<p>#}
+{#{{ travel.city }}#}
+        {#</p>#}
+    {#</div>#}
+    {#{% endfor %}#}
+
+    </div>
 
 
 
@@ -47,7 +87,7 @@
 
     <a href="{{ path('party_index') }}">back to list</a>
 
-    <a href="{{ path('party_edit', {'id': party.id}) }}">edit</a>
+    {#<a href="{{ path('party_edit', {'id': party.id}) }}">edit</a>#}
 
-    {{ include('party/_delete_form.html.twig') }}
+    {#{{ include('party/_delete_form.html.twig') }}#}
 {% endblock %}

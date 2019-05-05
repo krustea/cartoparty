@@ -20,7 +20,7 @@ class DefaultController extends BaseController
        $retour= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::RETOUR]);
        $allertravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($aller,6);
        $retourtravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($retour,6);
-        $parties = $this->getDoctrine()->getRepository(Party::class)->findBy([],['createdAt'=> 'DESC'], 3);
+       $parties = $this->getDoctrine()->getRepository(Party::class)->findBy([],['createdAt'=> 'DESC'], 3);
 
 
 

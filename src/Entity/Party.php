@@ -103,6 +103,8 @@ class Party
     {
         $this->travels = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
+        $this->setStartedAt(new \DateTime());
+        $this->setEndedAt(new \DateTime());
     }
 
     public function getId(): ?int

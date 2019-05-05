@@ -20,7 +20,17 @@ class PartyRepository extends ServiceEntityRepository
     }
 
 
+public function findByTravel($travel)
+{
+    return $this->createQueryBuilder('p')
+        ->andWhere('p.travel= :travel')
+        ->setParameter('travel', $travel)
+        ->orderBy('p.createdAt', 'DESC')
+        ->setMaxResults(4)
+        ->getQuery()
+        ->getResult();
 
+}
 
 
 

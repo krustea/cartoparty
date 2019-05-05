@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Party;
+use App\Entity\Travel;
 use App\Form\PartyType;
 use App\Repository\PartyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,7 +22,9 @@ class PartyController extends AbstractController
      */
     public function index(PartyRepository $partyRepository): Response
     {
+
         return $this->render('party/index.html.twig', [
+
             'parties' => $partyRepository->findAll(),
         ]);
     }
@@ -54,7 +58,18 @@ class PartyController extends AbstractController
      */
     public function show(Party $party): Response
     {
+
+//        $aller= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::ALLER]);
+//        $retour= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::RETOUR]);
+//        $allertravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($aller,6);
+//        $retourtravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($retour,6);
+//        $partytravel = $this->getDoctrine()->getRepository(Travel::class)->findBy(['party'], []);
+        //dump($retourtravels);die();
         return $this->render('party/show.html.twig', [
+//            "allers"=>$allertravels,
+//            "retours"=>$retourtravels,
+//          "partytravels"=>$partytravel,
+
             'party' => $party,
         ]);
     }
@@ -77,6 +92,7 @@ class PartyController extends AbstractController
 
         return $this->render('party/edit.html.twig', [
             'party' => $party,
+
             'form' => $form->createView(),
         ]);
     }
