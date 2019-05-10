@@ -3,6 +3,22 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
+
+    {% for booking in bookings %}
+    <p>{{ booking.user }}</p>
+    <p>{{ booking.travel }}</p>
+    <p>{{ booking.nbTravelers }}</p>
+    {% endfor %}
+
+    {% for travel in user.travels %}
+        <p>{{ travel.city }} - {{ travel.party }}</p>
+        <ul>
+            {% for booking in travel.bookings %}
+                <li>{{ booking.user.firstname }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
     <h1>User</h1>
 
     <table class="table">
@@ -23,10 +39,10 @@
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
-            <tr>
+{#            <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
-            </tr>
+            </tr>#}
             <tr>
                 <th>Adress</th>
                 <td>{{ user.adress }}</td>
@@ -43,10 +59,10 @@
                 <th>Phone</th>
                 <td>{{ user.phone }}</td>
             </tr>
-            <tr>
+{#            <tr>
                 <th>Picture</th>
                 <td>{{ user.picture }}</td>
-            </tr>
+            </tr>#}
         </tbody>
     </table>
 

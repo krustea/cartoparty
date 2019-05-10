@@ -109,7 +109,7 @@ body {
     height: 400px;
     width: auto;
 }
-
+// card aller et retour
 .aller{
     display: flex;
 }
@@ -133,3 +133,34 @@ body {
 .cardparty {
     margin: 20px;
 }
+
+// page Party
+
+.partyTitle {
+
+    text-align: center;
+}
+
+.partyPicture{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partyInfo{
+    display: flex;
+    background-color: red;
+    margin-top: 20px;
+
+}
+
+.partyCity{
+
+}
+
+.partyDescription{
+text-align: center;
+}
+
+
+

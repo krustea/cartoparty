@@ -14,9 +14,9 @@ class MessageType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('created_at')
-            ->add('travel')
-            ->add('user')
+//            ->add('created_at')
+//            ->add('travel')
+//            ->add('user')
         ;
     }
 

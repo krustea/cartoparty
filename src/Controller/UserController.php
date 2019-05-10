@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
+use App\Entity\Travel;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -53,8 +55,13 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
+        $user = $this->getUser();
+        $travel = $this->getDoctrine()->getRepository(Travel::class)->findAll();
+        $booking = $this->getDoctrine()->getRepository(Booking::class)->findBy(['travel'=>$travel]);
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'travels'=>$travel,
+            'bookings'=>$booking
         ]);
     }
 

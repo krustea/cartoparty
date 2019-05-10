@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Party;
+use App\Entity\Travel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -20,13 +21,21 @@ class PartyRepository extends ServiceEntityRepository
     }
 
 
-public function findByTravel($travel)
+public function findByTravel(Travel $travel, int $limit)
 {
-    return $this->createQueryBuilder('p')
-        ->andWhere('p.travel= :travel')
-        ->setParameter('travel', $travel)
-        ->orderBy('p.createdAt', 'DESC')
-        ->setMaxResults(4)
+
+    $qb= $this->createQueryBuilder('p');
+    $qb->innerJoin('p.travels', 't')
+        ->select('p', 't')
+        ->where($qb->expr()->eq('t.id', ':travel'))
+
+        ->orderBy('p.createdAt', 'DESC');
+
+
+    if ($limit) {
+        $qb->setMaxResults($limit);
+    }
+    return $qb->setParameter(':travel', $travel->getParty())
         ->getQuery()
         ->getResult();
 

@@ -3,30 +3,71 @@
 {% block title %}Travel{% endblock %}
 
 {% block body %}
-    <h1>{{ travel.city }}</h1>
+    <h1>Ville : {{ travel.city }}</h1>
+    <H2>Evenement : {{ travel.party }}</H2>
+    <h3>{{ travel.category }}</h3>
+    <p>{{ travel.user }}</p>
+    <p>Nombre de place restantes:{{ travel.nbUsersLeft }}</p>
+    <p>Tarif par personne: {{ travel.price }}</p>
+
+    <div class="container">
+        <h3>Messages:</h3>
+        {% for message in messages %}
+            <h1>{{ message.title }}</h1>
+            <p>{{ message.content }}</p>
+        {% endfor %}
+
+    </div>
+
+
+<div class="container">
+    <h3>Reservations.</h3>
+    {% for booking in travel.bookings %}
+        <h1>Utilisateur : {{ booking.user }}</h1>
+        <p>Nb de places reservées : {{ booking.nbTravelers }}</p>
+    {% endfor %}
+
+</div>
+
+
+
+
+    {% if app.user %}
+    <span class="btn btn-outline-primary">{{ app.user.email }}</span>
+    {{ render(controller('App\\Controller\\MessageController:new', {'id': travel.id}))}}
+        {{ render(controller('App\\Controller\\BookingController:new', {'id': travel.id})) }}
+    {% else %}
+        <h4>Pour reserver un trajet ou envoyer un mesage, veuillez vous connecter ou creer un compte</h4>
+        <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>
+        <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
+            <i class="fa fa-user-plus"></i>
+            Créer un compte
+        </a>
+
+    {% endif %}
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ travel.id }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ travel.city }}</td>
-            </tr>
-            <tr>
-                <th>Started_at</th>
-                <td>{{ travel.startedAt ? travel.startedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nb_user</th>
-                <td>{{ travel.nbUser }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ travel.price }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ travel.id }}</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>{{ travel.city }}</td>
+        </tr>
+        <tr>
+            <th>Started_at</th>
+            <td>{{ travel.startedAt ? travel.startedAt|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Nb_user</th>
+            <td>{{ travel.nbUser }}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{ travel.price }}</td>
+        </tr>
         </tbody>
     </table>
 

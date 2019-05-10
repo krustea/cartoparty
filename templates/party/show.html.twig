@@ -3,21 +3,47 @@
 {% block title %}Party{% endblock %}
 
 {% block body %}
-    <h1>Party</h1>
+
 
 
 
 <div class="container">
 
-    <h1>{{ party.name }}</h1>
-    du : {{ party.startedAt|date('d-m ') }} au {{ party.endedAt|date('d-m-Y ') }}
+    <h1 class="partyTitle">{{ party.name }}</h1>
 
-    <img src="{{ asset('uploads/' ~ party.picture) }}" alt="{{ party.name }}">
-    <p>{{ party.description }}</p>
+    <img class="partyPicture" src="{{ asset('uploads/' ~ party.picture) }}" alt="{{ party.name }}">
+    <div class="row">
+<div class="col-md-4"></div>
+    <div class="partyInfo col-md-4">
+        <p>du : {{ party.startedAt|date('d-m ') }} au {{ party.endedAt|date('d-m-Y ') }}</p>
 
+        <p class="partyCity">{{ party.city }}</p>
+    </div>
+    <div class="col-md-4"></div>
+
+
+
+<div class="col-md-4"></div>
+<div class="col-md-4"><p class="partyDescription">{{ party.description }}</p></div>
+<div class="col-md-4"></div>
+
+    </div>
 </div>
 
-{#
+
+
+
+<div class="container">
+    {% for travel in party.travels %}
+        <a href="{{ path('travel_show',{'id': travel.id}) }}"><article class="col-md-3 cardaller" >
+
+                {% include 'travel/cardaller.html.twig'  %}
+            </article></a>
+
+    {% endfor %}
+</div>
+
+
     <h4>Trajet aller</h4>
     <div class="aller ">
         {% for aller in allers %}
@@ -38,7 +64,7 @@
                 </article>
             </a>
         {% endfor %}
-#}
+
 {#{% for travel in travels %}#}
     {#<div>#}
         {#<p>#}

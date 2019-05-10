@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\Travel;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,12 +27,19 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="message_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="message_new", methods={"GET|POST"})
      */
-    public function new(Request $request): Response
+    public function new(Travel $travel,Request $request): Response
     {
         $message = new Message();
-        $form = $this->createForm(MessageType::class, $message);
+        $message->setUser($this->getUser());
+        $message->setCreatedAt(new \DateTime());
+        $message->setTravel($travel);
+        $form = $this->createForm(MessageType::class, $message,[
+        'action' => $this->generateUrl('message_new', ['id' => $travel->getId()])
+        ]);
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +47,7 @@ class MessageController extends AbstractController
             $entityManager->persist($message);
             $entityManager->flush();
 
-            return $this->redirectToRoute('message_index');
+            return $this->redirectToRoute('travel_show', ['id' => $travel->getId()]);
         }
 
         return $this->render('message/new.html.twig', [
@@ -93,4 +101,6 @@ class MessageController extends AbstractController
 
         return $this->redirectToRoute('message_index');
     }
+
+
 }

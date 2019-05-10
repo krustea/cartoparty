@@ -3,7 +3,8 @@
         <h3 class="card-title">{{ travel.party }}</h3>
         <h6 class="card-subtitle mb-2 text-muted">Lieu de départ: {{ travel.city }}</h6>
         <h6>Date & heure: {{ travel.startedAt|date('d/m/Y H:i') }}</h6>
-        <h6>Place(s) disponible(s): {{ travel.nbUser }}</h6>
+        <h6>Place(s) disponible(s): {{ travel.nbUsersLeft }}</h6>
         <h6>Tarifs: {{ travel.price }}</h6>
     </div>
 </div>
+

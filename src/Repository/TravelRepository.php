@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Category;
+use App\Entity\Party;
 use App\Entity\Travel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -33,29 +34,54 @@ class TravelRepository extends ServiceEntityRepository
 //
 //    }
 
-    public function findByCategory(Category $category, int $limit) : array
+    public function findByCategory(?Party $party, Category $category, int $limit) : array
     {
         $qb = $this->createQueryBuilder('t');
 
-        $qb->select('t')
+        $qb->select('t', 'c', 'p')
             ->innerJoin('t.category','c')
             ->innerJoin('t.party','p')
-            ->where($qb->expr()->eq('c.id', ':label'))
+            ->where($qb->expr()->eq('c.id', ':category_id'))
+        ;
 
-            ->orderBy('t.createdAt', 'DESC');
-
-
-        if ($limit) {
-            $qb->setMaxResults($limit);
+        if ($party !== null) {
+            $qb->andWhere($qb->expr()->eq('p.id', ':party_id'));
         }
 
+        $qb->orderBy('t.createdAt', 'DESC');
 
-        return $qb->setParameter(':label', $category->getId())
-            ->getQuery()
-            ->getResult();
+        $qb->setParameter(':category_id', $category->getId());
+
+        if ($party !== null) {
+            $qb->setParameter(':party_id', $party->getId());
+        }
+
+        return $qb->getQuery()->getResult();
 
 
     }
+
+//    public function findByTravel(Travel $travel, int $limit) : array
+//    {
+//        $qb = $this->createQueryBuilder('t');
+//
+//        $qb->select('t')
+//            ->innerJoin('t.party', 'p')
+//
+//
+//
+//    }
+
+
+
+
+
+
+
+
+
+
+
     // /**
     //  * @return Travel[] Returns an array of Travel objects
     //  */

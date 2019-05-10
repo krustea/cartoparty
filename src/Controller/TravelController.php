@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Booking;
+use App\Entity\Message;
 use App\Entity\Travel;
 use App\Form\Travel1Type;
+use App\Repository\MessageRepository;
 use App\Repository\TravelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +23,7 @@ class TravelController extends AbstractController
      */
     public function index(TravelRepository $travelRepository): Response
     {
+
         return $this->render('travel/index.html.twig', [
             'travels' => $travelRepository->findAll(),
         ]);
@@ -54,8 +58,13 @@ class TravelController extends AbstractController
      */
     public function show(Travel $travel): Response
     {
+        $message = $this->getDoctrine()->getRepository(Message::class)->findBy(['travel'=>$travel]);
+        $booking = $this->getDoctrine()->getRepository(Booking::class)->findBy(['travel'=>$travel]);
+
         return $this->render('travel/show.html.twig', [
             'travel' => $travel,
+            'messages' => $message,
+            'bookings'=>$booking
         ]);
     }
 

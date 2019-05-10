@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Travel;
 use App\Form\Booking1Type;
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,12 +27,17 @@ class BookingController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="booking_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="booking_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Travel $travel, Request $request): Response
     {
         $booking = new Booking();
-        $form = $this->createForm(Booking1Type::class, $booking);
+        $booking->setUser($this->getUser());
+        $booking->setTravel($travel);
+        $form = $this->createForm(Booking1Type::class, $booking, [
+            'action' => $this->generateUrl('booking_new', ['id' => $travel->getId()]),
+            'max' => $travel->getNbUsersLeft()
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,7 +45,7 @@ class BookingController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            return $this->redirectToRoute('booking_index');
+            return $this->redirectToRoute('travel_show', ['id' => $travel->getId()]);
         }
 
         return $this->render('booking/new.html.twig', [

@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MessageRepository")
+ *
  */
 class Message
 {
@@ -42,6 +44,17 @@ class Message
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * Message constructor.
+     * @param $id
+     */
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+//        $this->setTravel($this->getTravel());
+    }
+
 
     public function getId(): ?int
     {

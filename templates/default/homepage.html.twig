@@ -10,6 +10,7 @@
             <a class="btn btn-success" role="button" href="{{ path('party_new') }}">Proposer un événement</a>
         </div>
         <h4>Trajet aller</h4>
+        <div class="container">
         <div class="aller ">
             {% for aller in allers %}
                 <a href="{{ path('travel_show', {'id':aller.id}) }}">
@@ -19,6 +20,7 @@
                 </a>
             {% endfor %}
             <a href="{{ path('travel_index')}}">Voir plus</a>
+        </div>
         </div>
         <h4>Trajet retour</h4>
         <div class="retour ">

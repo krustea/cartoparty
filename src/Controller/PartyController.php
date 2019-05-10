@@ -58,19 +58,21 @@ class PartyController extends AbstractController
      */
     public function show(Party $party): Response
     {
+        $travel = $this->getDoctrine()->getRepository(Travel::class)->findBy([], ['party'=>'desc']);
+        $aller= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::ALLER]);
+        $retour= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::RETOUR]);
+        $allertravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($party, $aller,6);
+        $retourtravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($party, $retour,6);
 
-//        $aller= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::ALLER]);
-//        $retour= $this->getDoctrine()->getRepository(Category::class)->findOneBy(['label'=>Category::RETOUR]);
-//        $allertravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($aller,6);
-//        $retourtravels = $this->getDoctrine()->getRepository(Travel::class)->findByCategory($retour,6);
-//        $partytravel = $this->getDoctrine()->getRepository(Travel::class)->findBy(['party'], []);
-        //dump($retourtravels);die();
+        dump($allertravels);
+
         return $this->render('party/show.html.twig', [
-//            "allers"=>$allertravels,
-//            "retours"=>$retourtravels,
-//          "partytravels"=>$partytravel,
 
             'party' => $party,
+            'travels' =>$travel,
+            "allers"=>$allertravels,
+            "retours"=>$retourtravels,
+
         ]);
     }
 
@@ -102,7 +104,7 @@ class PartyController extends AbstractController
      */
     public function delete(Request $request, Party $party): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$party->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $party->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($party);
             $entityManager->flush();
