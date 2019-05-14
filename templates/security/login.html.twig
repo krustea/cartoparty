@@ -7,7 +7,7 @@
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
+<div class="container col-sm-3 col-md-3 login ">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
@@ -32,5 +32,6 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+    </div>
 </form>
 {% endblock %}

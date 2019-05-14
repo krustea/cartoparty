@@ -48,7 +48,7 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('travel_show', ['id' => $travel->getId()]);
         }
 
-        return $this->render('booking/new.html.twig', [
+        return $this->render('booking/modalNew.html.twig', [
             'booking' => $booking,
             'form' => $form->createView(),
         ]);

@@ -1,0 +1,28 @@
+easy_admin:
+    site_name: 'CarToParty'
+    entities:
+        # List the entity class name you want to manage
+
+        User:
+            class: App\Entity\User
+            label: 'User'
+            list:
+                title: 'User list'
+
+        Travel:
+            class: App\Entity\Travel
+            label: 'Travel'
+            list:
+                title: 'Travel list'
+        Party:
+            class: App\Entity\Party
+            label: 'Party'
+            list:
+                title: 'Party list'
+
+        Booking:
+            class: App\Entity\Booking
+            label: 'Booking'
+            list:
+                title: 'Booking list'
+

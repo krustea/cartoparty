@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <title>{% block title %}CarToParty!{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+        </style>
     </head>
     <body>
         {% block header %}
@@ -11,27 +14,84 @@
                 <a class="navbar-brand" href="{{ path('homepage') }}">Car To Party!</a>
 
                 {% if app.user %}
-                    <a class="p-2 text-dark" href="{{ path('user_show', {'id': app.user.id}) }}">profil</a>
-                    <span class="btn btn-outline-primary">{{ app.user.firstname }}</span>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('easyadmin') }}" class="btn btn-light">Admin</a>
+
+                    {% endif %}
+                    <a class="btn btn-outline-primary" href="{{ path('user_show', {'id': app.user.id}) }}">{{ app.user.firstname }}</a>
                     <img src="{{ asset('images/uploads/' ~ app.user.picture) }}" alt="">
-                    <a class="btn btn-outline-primary" href="{{ path('app_logout') }}">Se deconnecter</a>
+                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" href="{{ path('app_logout') }}">Se deconnecter</a>
                 {% else %}
-                    <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>
+                    <a href="{{ path('app_login') }}" class="btn login-btn" data-toggle="modal" data-target=".modal-login">Se connecter</a>
+                    <div class="modal fade modal-login" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                {{ render(controller('App\\Controller\\SecurityController:modalLogin')) }}
+                            </div>
+                        </div>
+                    </div>
+                    {#<a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>#}
                     <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
+
+
                         <i class="fa fa-user-plus"></i>
                         Créer un compte
                     </a>
+
                 {% endif %}
-                {#{% if is_granted('ROLE_ADMIN') %}#}
-                    {#<a href="{{ path('admin') }}" class="btn btn-light">Administration</a>#}
 
-                {#{% endif %}#}
 
+
+{#modal#}
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </nav>
+
+
+            <!-- Modal -->
+
+            {#<div class="modal" tabindex="-1" role="dialog">#}
+                {#<div class="modal-dialog" role="document">#}
+                    {#<div class="modal-content">#}
+                        {#<div class="modal-header">#}
+                            {#<h5 class="modal-title">Modal title</h5>#}
+                            {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                                {#<span aria-hidden="true">&times;</span>#}
+                            {#</button>#}
+                        {#</div>#}
+                        {#<div class="modal-body">#}
+                            {#<p>Modal body text goes here.</p>#}
+                        {#</div>#}
+                        {#<div class="modal-footer">#}
+                            {#<button type="button" class="btn btn-primary">Save changes</button>#}
+                            {#<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Vous etes sur le point de vous deconnecter!
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-primary" href="{{ path('app_logout') }}">Se deconnecter</a>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         {% endblock %}
         <main>
@@ -42,25 +102,18 @@
                 <footer>
                     <div class="container">
                         <div class="row">
+
                             <div class="col-sm-6 col-md-3 item">
-                                <h3>Services</h3>
+                                <h3>A propos</h3>
                                 <ul>
-                                    <li><a href="#">Web design</a></li>
-                                    <li><a href="#">Development</a></li>
-                                    <li><a href="#">Hosting</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6 col-md-3 item">
-                                <h3>About</h3>
-                                <ul>
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">Team</a></li>
+                                    <li><a href="#">Cartoparty</a></li>
+                                    <li><a href="#">L'equipe</a></li>
                                     <li><a href="#">Careers</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-6 item text">
-                                <h3>Company Name</h3>
-                                <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                                <h3>Cartoparty</h3>
+                                <p>LE service pour se rendre en soirée ou concert a plusieurs.</p>
                             </div>
                             <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
                         </div>

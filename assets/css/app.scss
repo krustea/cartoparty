@@ -1,14 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    background-color: grey;
+    box-sizing: border-box;
+    background-color: #50C5B7;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 //footer
 .footer-dark {
     padding:50px 0;
     color:#f0f9ff;
-    background-color:#282d32;
+    background-color:#f9C80E;
 }
 
 .footer-dark h3 {
@@ -106,12 +108,25 @@ body {
 }
 
 .img-main-homepage{
+    margin-top: 20px;
+    margin-right: 30px;
+    margin-bottom: 30px;
     height: 400px;
     width: auto;
 }
 // card aller et retour
 .aller{
     display: flex;
+    flex-wrap: wrap;
+
+
+}
+
+.card-body{
+    background-color: #fefefe;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+
 }
 
 .cardaller{
@@ -120,6 +135,8 @@ body {
 
 .retour{
     display: flex;
+    flex-wrap: wrap;
+
 }
 
 .cardretour{
@@ -128,6 +145,7 @@ body {
 
 .party{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .cardparty {
@@ -162,5 +180,16 @@ body {
 text-align: center;
 }
 
+// View Travel
+
+.travelParty{
+
+}
+
+//login page
+
+.login{
+    margin: 120px;
+}
 
 

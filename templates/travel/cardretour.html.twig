@@ -1,9 +1,11 @@
-<div class="card" style="width: 18rem;">
+<div class="card" >
     <div class="card-body">
         <h3 class="card-title">{{ travel.city }}</h3>
         <h6 class="card-subtitle mb-2 text-muted">Lieu de départ: {{ travel.party }}</h6>
         <h6>Date & heure: {{ travel.startedAt|date('d/m/Y H:i') }}</h6>
         <h6>Place(s) disponible(s): {{ travel.nbUsersLeft }}</h6>
         <h6>Tarifs: {{ travel.price }}€</h6>
+        <a class="btn btn-success" href="{{ path('travel_show', {'id':travel.id}) }}">voir plus</a>
+
     </div>
 </div>

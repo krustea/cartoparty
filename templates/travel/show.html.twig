@@ -3,19 +3,36 @@
 {% block title %}Travel{% endblock %}
 
 {% block body %}
+
+    <div class="container travelParty col-md-3">
+    <h3>{{ travel.category }}</h3>
     <h1>Ville : {{ travel.city }}</h1>
     <H2>Evenement : {{ travel.party }}</H2>
-    <h3>{{ travel.category }}</h3>
-    <p>{{ travel.user }}</p>
+    <p>Conducteur: {{ travel.user }}</p>
     <p>Nombre de place restantes:{{ travel.nbUsersLeft }}</p>
     <p>Tarif par personne: {{ travel.price }}</p>
+    </div>
 
     <div class="container">
         <h3>Messages:</h3>
         {% for message in messages %}
-            <h1>{{ message.title }}</h1>
+            <p>{{ message.user.firstname }}</p>
+            <p>{{ message.title }}</p>
             <p>{{ message.content }}</p>
         {% endfor %}
+            {% if app.user %}
+            <span class="btn btn-outline-primary">{{ app.user.firstname }}</span>
+            {{ render(controller('App\\Controller\\MessageController:new', {'id': travel.id}))}}
+            {% else %}
+                <h4>Pour reserver un trajet ou envoyer un message, veuillez vous connecter ou creer un compte</h4>
+                <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>
+                <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
+                    <i class="fa fa-user-plus"></i>
+                    Créer un compte
+                </a>
+
+            {% endif %}
+
 
     </div>
 
@@ -26,25 +43,52 @@
         <h1>Utilisateur : {{ booking.user }}</h1>
         <p>Nb de places reservées : {{ booking.nbTravelers }}</p>
     {% endfor %}
+    {% if app.user and travel.nbUsersLeft>0 %}
+        <div class="modal fade" id="Booking" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reservation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Veuillez saisir le nombre de passagers a reserver
+                    </div>
+                    <div class="modal-footer">
+                        {{render(controller('App\\Controller\\BookingController:new', {'id': travel.id}))}}
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Retour</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <a class="btn btn-success" data-toggle="modal" data-target="#Booking">Reserver</a>
+        {% else %}
+        <h1>Trajet complet</h1>
+    {% endif %}
 
 </div>
 
 
 
 
-    {% if app.user %}
-    <span class="btn btn-outline-primary">{{ app.user.email }}</span>
-    {{ render(controller('App\\Controller\\MessageController:new', {'id': travel.id}))}}
-        {{ render(controller('App\\Controller\\BookingController:new', {'id': travel.id})) }}
-    {% else %}
-        <h4>Pour reserver un trajet ou envoyer un mesage, veuillez vous connecter ou creer un compte</h4>
-        <a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>
-        <a class="btn btn-outline-primary" href="{{ path('user_registration') }}">
-            <i class="fa fa-user-plus"></i>
-            Créer un compte
-        </a>
+    {#{% if app.user %}#}
+    {#<span class="btn btn-outline-primary">{{ app.user.email }}</span>#}
+    {#{{ render(controller('App\\Controller\\MessageController:new', {'id': travel.id}))}}#}
+        {#{{ render(controller('App\\Controller\\BookingController:new', {'id': travel.id})) }}#}
+    {#{% else %}#}
+        {#<h4>Pour reserver un trajet ou envoyer un message, veuillez vous connecter ou creer un compte</h4>#}
+        {#<a class="btn btn-outline-primary" href="{{ path('app_login') }}">Se connecter</a>#}
+        {#<a class="btn btn-outline-primary" href="{{ path('user_registration') }}">#}
+            {#<i class="fa fa-user-plus"></i>#}
+            {#Créer un compte#}
+        {#</a>#}
 
-    {% endif %}
+    {#{% endif %}#}
 
     <table class="table">
         <tbody>

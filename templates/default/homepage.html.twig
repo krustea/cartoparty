@@ -9,43 +9,47 @@
             <a class="btn btn-primary" role="button" href="{{ path('travel_new') }}">Proposer un trajet</a>
             <a class="btn btn-success" role="button" href="{{ path('party_new') }}">Proposer un événement</a>
         </div>
-        <h4>Trajet aller</h4>
+
+
         <div class="container">
-        <div class="aller ">
-            {% for aller in allers %}
-                <a href="{{ path('travel_show', {'id':aller.id}) }}">
-                <article class="col-md-3 cardaller" >
-                    {% include 'travel/cardaller.html.twig' with {'travel' : aller} only %}
-                </article>
-                </a>
-            {% endfor %}
-            <a href="{{ path('travel_index')}}">Voir plus</a>
+            <h4>Derniers trajets aller proposés : </h4>
+            <div class="aller ">
+                {% for aller in allers %}
+                    {#<a href="{{ path('travel_show', {'id':aller.id}) }}">#}
+                    <article class="col-md-offset-3 col-sm-offset-3 cardaller">
+                        {% include 'travel/cardaller.html.twig' with {'travel' : aller} only %}
+                    </article>
+                    {#</a>#}
+                {% endfor %}
+                <a href="{{ path('travel_index') }}">Voir plus</a>
+            </div>
         </div>
-        </div>
-        <h4>Trajet retour</h4>
+        <div class="container">
+        <h4>Derniers trajets retour proposés : </h4>
         <div class="retour ">
             {% for retour in retours %}
-            <a href="{{ path('travel_show', {'id':retour.id}) }}">
 
-            <article class="col-md-3 cardretour">
-                    {% include 'travel/cardretour.html.twig'with {'travel' : retour} only %}
-                </article>
-            </a>
+                    <article class="col-md-offset-3 col-sm-offset-3 cardretour">
+                        {% include 'travel/cardretour.html.twig'with {'travel' : retour} only %}
+                    </article>
             {% endfor %}
-            <a href="{{ path('travel_index')}}">Voir plus</a>
+            <a href="{{ path('travel_index') }}">Voir plus</a>
         </div>
-<h4>Derniers événements créés</h4>
+        </div>
+
+        <div class="container">
+        <h4>Derniers événements créés</h4>
         <div class="party">
             {% for party in parties %}
-                <a href="{{ path('party_show',{'id': party.id}) }}">
-                <article class="col-md-3 cardparty">
+                {#<a href="{{ path('party_show',{'id': party.id}) }}">#}
+                <article class="col-md-offset-3 col-sm-offset-3 cardparty">
                     {% include'party/card.html.twig' %}
                 </article>
-                </a>
+                {#</a>#}
             {% endfor %}
             <a href="{{ path('party_index') }}">voir plus</a>
         </div>
-
+        </div>
 
     </div>
 

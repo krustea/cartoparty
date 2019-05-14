@@ -26,6 +26,18 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
+
+    public function modalLogin(AuthenticationUtils $authenticationUtils): Response
+    {
+        $error =  $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/modalLogin.html.twig',['last_username' => $lastUsername, 'error' => $error]);
+
+    }
+
+
+
     /**
      * @Route("/register", name="user_registration")
      */

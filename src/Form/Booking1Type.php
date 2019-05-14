@@ -14,9 +14,9 @@ class Booking1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder,  array $options)
     {
         $builder
-//            ->add('valid')
+            ->add('valid')
             ->add('nbTravelers', IntegerType::class, [
-                "attr" => ["min" => 1, "max"=> $options["max"]]
+                "attr" => ["min" => 0, "max"=> $options["max"]]
             ])
 //            ->add('user')
 //            ->add('travel')
