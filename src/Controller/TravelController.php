@@ -44,7 +44,7 @@ class TravelController extends AbstractController
             $entityManager->persist($travel);
             $entityManager->flush();
 
-            return $this->redirectToRoute('travel_index');
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('travel/new.html.twig', [

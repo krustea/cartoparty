@@ -41,6 +41,18 @@ public function findByTravel(Travel $travel, int $limit)
 
 }
 
+    public function searchBy(string $sq)
+    {
+        $sq = "%$sq%";
+        $qb = $this->createQueryBuilder('p');
+        $qb = $qb
+            ->where($qb->expr()->orX(
+                $qb->expr()->like('p.name', ':sq'))
+
+           );
+        return $qb->setParameter(':sq', $sq)->getQuery()->getResult();
+    }
+
 
 
     // /**

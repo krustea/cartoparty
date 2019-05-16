@@ -1,11 +1,19 @@
 {% extends "base.html.twig" %}
 {% block body %}
-
+    <div class="blocImageHomepage">
     <img class="img-header-homepage" src="images/concert-2527495_1280.jpg" alt="concert">
+        <section class="thin-shade">
+            <span><p>CarToParty!</p></span>
+        </section>
+        <p class="sousTitre">Covoiturez pour faire la fête</p>
 
+    </div>
     <div class="container main-homepage">
+
+
+
         <div>
-            <img class="img-main-homepage" src="images/balloons-1331564_1920.jpg" alt="balloon">
+            <img class="img-main-homepage rounded" src="images/balloons-1331564_1920.jpg" alt="balloon">
             <a class="btn btn-primary" role="button" href="{{ path('travel_new') }}">Proposer un trajet</a>
             <a class="btn btn-success" role="button" href="{{ path('party_new') }}">Proposer un événement</a>
         </div>

@@ -7,7 +7,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
         </style>
-    </head>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">    </head>
     <body>
         {% block header %}
             <nav class="navbar navbar-light bg-light justify-content-between">
@@ -42,10 +42,13 @@
 
 
 
-{#modal#}
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+                <form action="{{ path('search')}}" method="GET" class="d-flex">
+                    <label for="search-query"></label>
+                    <input type="text" name="search-query" placeholder="Rechercher un evenement" class="form-control ">
+                    <button type="submit" class="btn btn-outline-primary fa fa-search ml-2">
+                    </button>
+                    {#<a href="{{ path('search') }}"><i class="fa fa-search"></i></a>#}
                 </form>
             </nav>
 
@@ -108,16 +111,19 @@
                                 <ul>
                                     <li><a href="#">Cartoparty</a></li>
                                     <li><a href="#">L'equipe</a></li>
-                                    <li><a href="#">Careers</a></li>
+                                    <li><a href="#">informations legales</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-6 item text">
                                 <h3>Cartoparty</h3>
                                 <p>LE service pour se rendre en soirée ou concert a plusieurs.</p>
                             </div>
-                            <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                            <div class="col item social"><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a><a href="#"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i>
+                                </a><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a></div>
                         </div>
-                        <p class="copyright">Company Name © 2018</p>
+                        <p class="copyright">Cartoparty © 2019</p>
                     </div>
                 </footer>
             </div>

@@ -11,7 +11,7 @@
 
     <h1 class="partyTitle">{{ party.name }}</h1>
 
-    <img class="partyPicture" src="{{ asset('uploads/' ~ party.picture) }}" alt="{{ party.name }}">
+    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('uploads/' ~ party.picture) }}" alt="{{ party.name }}">
     <div class="row">
 <div class="col-md-4"></div>
     <div class="partyInfo col-md-4">
@@ -30,18 +30,6 @@
     </div>
 </div>
 
-
-
-
-<div class="container">
-    {% for travel in party.travels %}
-        <a href="{{ path('travel_show',{'id': travel.id}) }}"><article class="col-md-3 cardaller" >
-
-                {% include 'travel/cardaller.html.twig'  %}
-            </article></a>
-
-    {% endfor %}
-</div>
 
 
     <h4>Trajet aller</h4>
@@ -65,53 +53,45 @@
             </a>
         {% endfor %}
 
-{#{% for travel in travels %}#}
-    {#<div>#}
-        {#<p>#}
-{#{{ travel.city }}#}
-        {#</p>#}
-    {#</div>#}
-    {#{% endfor %}#}
-
     </div>
 
+    <a class="btn btn-primary" role="button" href="{{ path('travel_new',{'id': party.id}) }}">Proposer un trajet</a>
 
 
+    {#<table class="table">#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ party.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Name</th>#}
+                {#<td>{{ party.name }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Picture</th>#}
+                {#<td>{{ party.picture }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>City</th>#}
+                {#<td>{{ party.city }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Started_at</th>#}
+                {#<td>{{ party.startedAt ? party.startedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Ended_at</th>#}
+                {#<td>{{ party.endedAt ? party.endedAt|date('Y-m-d H:i:s') : '' }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Description</th>#}
+                {#<td>{{ party.description }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ party.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ party.name }}</td>
-            </tr>
-            <tr>
-                <th>Picture</th>
-                <td>{{ party.picture }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ party.city }}</td>
-            </tr>
-            <tr>
-                <th>Started_at</th>
-                <td>{{ party.startedAt ? party.startedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Ended_at</th>
-                <td>{{ party.endedAt ? party.endedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ party.description }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('party_index') }}">back to list</a>
+    {#<a href="{{ path('party_index') }}">back to list</a>#}
 
     {#<a href="{{ path('party_edit', {'id': party.id}) }}">edit</a>#}
 
